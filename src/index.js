@@ -38,8 +38,8 @@ function quoteSuccessFunc(){
     },
     body: JSON.stringify({likes: newLikes})
   })
-  .then(postUpdateText.innerText = newLikes)
   .then(postUpdateDataLikes.dataset.quoteLikes = newLikes)
+  .then(postUpdateText.innerText = newLikes)
 }
 
 quoteDivTag.addEventListener("click", function(){
