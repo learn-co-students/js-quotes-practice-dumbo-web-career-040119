@@ -2,7 +2,7 @@
 // only runs after the DOM has finshed loading.
 let quoteDivTag = document.querySelector("#quote-list")
 let formQuote = document.querySelector("#new-quote-list")
-let formQuoteButton = document.querySelector(".btn-primary")
+let formQuoteButton = document.querySelector("#new-quote-form ")
 
 document.addEventListener("DOMContentLoaded", function(){
   getQuoteList()
@@ -67,17 +67,11 @@ function onSubmit(){
   })
   .then(res => res.json())
   .then(data => slapQuoteOnTheDom(data))
-
-  console.log(newQuote)
 }
 
 function bindFormSubmit(){
-  console.log("hi")
   formQuoteButton.addEventListener("click", onSubmit)
 }
-
-
-
 
 function slapQuoteOnTheDom(quote){
   quoteContainer = document.querySelector("#quote-list")
