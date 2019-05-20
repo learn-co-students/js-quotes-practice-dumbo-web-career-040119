@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
   bindFormSubmit()
 })
 
-function quoteDeleteFunc(){
+function quoteDeleteFunc(event){
   event.preventDefault();
   let selfId = parseInt(event.target.parentElement.dataset.quoteId)
   fetch(`http://localhost:3000/quotes/${ selfId }`, {
@@ -19,7 +19,10 @@ function quoteDeleteFunc(){
       "Accept": "application/json"
     }
   })
-  .then(event.target.parentElement.remove())
+  .then(() => {
+    event.target.parentElement.remove()
+  })
+  // .then(event.target.parentElement.remove())
 }
 
 function quoteSuccessFunc(){
@@ -38,13 +41,17 @@ function quoteSuccessFunc(){
     },
     body: JSON.stringify({likes: newLikes})
   })
-  .then(postUpdateDataLikes.dataset.quoteLikes = newLikes)
-  .then(postUpdateText.innerText = newLikes)
+  .then(() => {
+    postUpdateDataLikes.dataset.quoteLikes = newLikes
+  })
+  .then(() => {
+    postUpdateText.innerText = newLikes
+  })
 }
 
 quoteDivTag.addEventListener("click", function(){
   if (event.target.classList.contains("btn-danger")){
-    quoteDeleteFunc()
+    quoteDeleteFunc(event)
   } else if (event.target.classList.contains("btn-success")){
     quoteSuccessFunc()
   }
