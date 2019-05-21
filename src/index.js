@@ -38,7 +38,10 @@ function addToTheDOM(quote) {
   success.className = 'btn-success';
   success.innerHTML =
     `Likes: <span>${quote.likes}</span>`;
-  success.addEventListener('click', addLike);
+  success.addEventListener('click', function(event) {
+    quote.likes = parseInt(quote.likes) + 1;
+    addLike(event, quote.likes);
+  });
   blockquote.appendChild(success);
 
   // create delete button and add to blockquote
@@ -98,10 +101,10 @@ function deleteQuote(event) {
 
 
 // Add a like
-function addLike(event) {
+function addLike(event, likeInput) {
   let id = event.target.parentElement.dataset.quoteId;
   let span = event.target.querySelector('span');
-  let likes = parseInt(span.innerText)+1;
+  let likes = likeInput;
 
   fetch(URL + `/${id}`, {
     method: "PATCH",

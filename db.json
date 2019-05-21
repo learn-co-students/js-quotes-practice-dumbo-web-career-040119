@@ -21,7 +21,7 @@
     {
       "id": 4,
       "quote": "You gain strength, courage and confidence by every experience in which you really stop to look fear in the face. You are able to say to yourself, 'I have lived through this horror. I can take the next thing that comes along.' You must do the thing you think you cannot do.",
-      "likes": 7,
+      "likes": 9,
       "author": "Eleanor Roosevelt"
     },
     {
@@ -39,7 +39,7 @@
     {
       "id": 7,
       "quote": "Tell me and I forget, teach me and I remember, involve me and I learn.",
-      "likes": 7,
+      "likes": 8,
       "author": "Benjamin Franklin"
     },
     {
@@ -51,13 +51,13 @@
     {
       "id": 9,
       "quote": "Our greatest glory is not in never falling, but in rising everytime we fall.",
-      "likes": 5,
+      "likes": 7,
       "author": "Confucius"
     },
     {
       "id": 10,
       "quote": "You know, failure hurts. Any kind of failure stings. If you live in the sting, you will undoubtedly fail. My way of getting past the sting is to say no, I’m just not going to let this get me down.",
-      "likes": 9,
+      "likes": 5,
       "author": "Sonia Sotomayor"
     }
   ]
