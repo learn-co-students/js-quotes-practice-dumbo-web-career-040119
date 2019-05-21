@@ -72,8 +72,9 @@ function onSubmit(){
     },
     body: JSON.stringify({quote: newQuote, likes: 0, author: newAuthor})
   })
-  .then(res => res.json())
-  .then(data => slapQuoteOnTheDom(data))
+  .then(res => console.log(res))
+  // .then(res => res.json())
+  // .then(data => slapQuoteOnTheDom(data))
 }
 
 function bindFormSubmit(){

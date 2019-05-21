@@ -35,6 +35,18 @@
       "likes": 0,
       "author": "dasdasd",
       "id": 11
+    },
+    {
+      "quote": "dasdasd",
+      "likes": 0,
+      "author": "dasdasd",
+      "id": 12
+    },
+    {
+      "quote": "dasdasdadas",
+      "likes": 0,
+      "author": "dasdd",
+      "id": 13
     }
   ]
 }
