@@ -2,7 +2,7 @@
 // only runs after the DOM has finshed loading.
 let quoteDivTag = document.querySelector("#quote-list")
 let formQuote = document.querySelector("#new-quote-list")
-let formQuoteButton = document.querySelector("#new-quote-form ")
+let formQuoteButton = document.querySelector(".btn-primary ")
 
 document.addEventListener("DOMContentLoaded", function(){
   getQuoteList()
