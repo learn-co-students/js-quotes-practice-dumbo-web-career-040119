@@ -1,15 +1,17 @@
 const quote_list_ul = document.querySelector('#quote-list')
 const new_quote_form = document.querySelector('#new-quote-form')
 
+// Gets quotes from local server
 function loadQuotes() {
   fetch('http://localhost:3000/quotes')
   .then(res => res.json())
   .then(quotes => quotes.forEach(addQuoteToDom))
 }
 
-
+//populates DOM with Quotes from server
 loadQuotes()
 
+// Edits Quote on the server and the DOM, deletes Edit Form after submittal
 function editQuote(event) {
   event.preventDefault();
 
@@ -27,9 +29,10 @@ function editQuote(event) {
     body: JSON.stringify({ quote: newQuote })
   }).then(res => res.json())
     .then(doc => oldQuote.innerText = newQuote)
+    .then(doc => event.target.remove())
 };
 
-
+// builds Edit Form and sends back to addForm, adds Event Listener to form
 function createForm(editForm) {
   editForm.id = 'edit-quote-form';
   editForm.innerHTML = `
@@ -46,6 +49,7 @@ function createForm(editForm) {
   editForm.addEventListener('submit', editQuote);
 }
 
+// creates Edit Form, sends to CreateForm(), appends to Quote
 function addForm(){
 
   const blockquote = event.target.parentElement;
@@ -55,6 +59,7 @@ function addForm(){
 
 }
 
+// deletes Quote from server and DOM
 function deleteQuote(event){
   let card = event.target.parentElement;
   fetch(`http://localhost:3000/quotes/${event.target.dataset.quoteId}`, {
@@ -63,6 +68,7 @@ function deleteQuote(event){
     .then(doc => card.parentElement.remove())
 }
 
+//adds Likes to server and Like button
 function addLike(event, likeInput){
   let id = event.target.dataset.quoteId;
   let span = event.target.querySelector('span');
@@ -81,6 +87,7 @@ function addLike(event, likeInput){
     .then(doc => span.innerText = likes)
 }
 
+//adds Quotes to DOM
 function addQuoteToDom(quote){
   const li = document.createElement('li')
   li.className = 'quote-card'
@@ -113,7 +120,7 @@ function addQuoteToDom(quote){
   danger_btn.addEventListener('click', deleteQuote);
   blockquote.appendChild(danger_btn)
 
-  //create edit_btn button and add to blockquote
+  // add Edit button with Event Listener
   const edit_btn = document.createElement('button');
   edit_btn.className = 'edit_btn';
   edit_btn.addEventListener('click', addForm);
@@ -123,8 +130,8 @@ function addQuoteToDom(quote){
 
   quote_list_ul.appendChild(li)
 }
-
-const addQuote = function(event){
+//adds new Quote to server and DOM
+function addQuote(event){
   event.preventDefault()
   const new_quote = document.querySelector('#new-quote')
   const new_author = document.querySelector('#author')

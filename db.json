@@ -3,19 +3,19 @@
     {
       "id": 1,
       "quote": "The here and now is all we have, and if we play it right it's all we'll need.",
-      "likes": 5,
+      "likes": 7,
       "author": "Ann Richards"
     },
     {
       "id": 2,
       "quote": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
-      "likes": 1,
+      "likes": 3,
       "author": "Collin Powell"
     },
     {
       "id": 3,
       "quote": "Don't count the days, make the days count.",
-      "likes": 1,
+      "likes": 2,
       "author": "Mike Tyson"
     },
     {
@@ -55,8 +55,8 @@
       "author": "Confucius"
     },
     {
-      "quote": "A good hamburger is fabulous",
-      "likes": 5,
+      "quote": "A good hamburger is hard to find",
+      "likes": 4,
       "author": "Anonymous",
       "id": 10
     }
