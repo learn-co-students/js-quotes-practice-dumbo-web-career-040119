@@ -10,7 +10,22 @@
   <title>Motivation</title>
 </head>
 <body class='container center'>
+    <div id="edit-div">
+        <form id="edit-quote-form">
+          <div class="form-group">
+            <label for="edit-quote">Edit Quote</label>
+            <input type="text" class="form-control" id="edit-quote" placeholder="Learn. Love. Code.">
+          </div>
+          <div class="form-group">
+            <label for="Author">Author</label>
+            <input type="text" class="form-control" id="edit-author" placeholder="Flatiron School">
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
   <h1>My favorite quotes:</h1>
+  <button id="alphabetize">Sort by First Name</button>
+  <!-- <button id="likesSort">Sort by Likes</button> -->
   <div>
     <ul id="quote-list">
     </ul>
@@ -30,19 +45,7 @@
     </form>
   </div>
 
-  <div>
-    <form id="edit-quote-form">
-      <div class="form-group">
-        <label for="edit-quote">Edit Quote</label>
-        <input type="text" class="form-control" id="edit-quote" placeholder="Learn. Love. Code.">
-      </div>
-      <div class="form-group">
-        <label for="Author">Author</label>
-        <input type="text" class="form-control" id="edit-author" placeholder="Flatiron School">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+  
   <script src="src/index.js"></script>
 </body>
 </html>

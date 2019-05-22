@@ -1,3 +1,11 @@
 #quote-list {
   padding: 20px;
 }
+
+#edit-div{
+  position: fixed;
+  right: 10px;
+  background: silver;
+  width: 0;
+  overflow: hidden;
+}

@@ -1,10 +1,16 @@
 // It might be a good idea to add event listener to make sure this file 
 // only runs after the DOM has finshed loading. 
-const newQuote = document.querySelector('#new-quote-form');
+const newQuoteForm = document.querySelector('#new-quote-form');
 const editQuoteForm = document.querySelector('#edit-quote-form'); 
 const editQuote = document.querySelector('#edit-quote');
 const editAuthor = document.querySelector('#edit-author');
 const quoteList = document.querySelector('#quote-list');
+const alphabetize = document.querySelector('#alphabetize');
+//const likesSort = document.querySelector('#likesSort');
+const editDiv = document.querySelector('#edit-div');
+let editShown = false;
+let sort = false;
+// let likeSort = false;
 
 //globally store quotes and elements set in event listeners created in createElements()
 let currentElement = null;
@@ -17,9 +23,39 @@ let editFooter = null;
 document.addEventListener('DOMContentLoaded',function(){
     console.log('loaded');
     loadQuotes();
-    newQuote.addEventListener('submit', addQuote);
+    newQuoteForm.addEventListener('submit', addQuote);
     editQuoteForm.addEventListener('submit', editQuoteInfo)
+    alphabetize.addEventListener('click',function(){
+        sort = !sort;
+        loadQuotes();
+        if(sort){
+            alphabetize.innerText = "Sort by First Name: ON";
+        }
+        else{
+            alphabetize.innerText = "Sort by First Name: OFF";
+        }
+    })
+    // likesSort.addEventListener('click',function(){
+    //     likeSort = !likeSort;
+    //     loadQuotes();
+    //     if(likeSort){
+    //         likesSort.innerText = "Sort by Likes: ON";
+    //     }
+    //     else{
+    //         likesSort.innerText = "Sort by Likes: OFF";
+    //     }
+    // })
 })
+
+// function sortByLikes(data){
+    
+// }
+
+function alphabetizeData(data){
+    //console.log(data);
+    sortData = data.sort((a,b) => (a.author.toUpperCase().trim() > b.author.toUpperCase().trim()) ? 1: -1)
+    return sortData;
+}
 
 function addQuote(e){
     e.preventDefault()
@@ -42,8 +78,9 @@ function addQuote(e){
     .then(data =>{
         //loadQuotes();
         createElement(data);
+        newQuoteForm.reset();
     })
-    newQuote.reset(); //why is this not resetting?
+   
 }
 
 function removeQuote(id){
@@ -56,7 +93,8 @@ function removeQuote(id){
     })
 }
 function addLike(quote){
-    let newLikes = parseInt(quote.likes) + 1;
+    //let newLikes = parseInt(quote.likes) + 1;
+    let newLikes = quote.likes;
     fetch(`http://localhost:3000/quotes/${quote.id}`,{
         method: "PATCH",
         headers: {
@@ -74,14 +112,14 @@ function addLike(quote){
     })
 }
 
-function fetchBeforeAdd(id){
-    //function to fetch quote id and passes it to addLike()
-    fetch(`http://localhost:3000/quotes/${id}`)
-    .then(resp => resp.json())
-    .then(data =>{
-        addLike(data);
-    })
-}
+// function fetchBeforeAdd(id){
+//     //function to fetch quote id and passes it to addLike()
+//     fetch(`http://localhost:3000/quotes/${id}`)
+//     .then(resp => resp.json())
+//     .then(data =>{
+//         addLike(data);
+//     })
+// }
 
 function editQuoteInfo(e){
     e.preventDefault();
@@ -103,6 +141,15 @@ function editQuoteInfo(e){
         editP.innerText = editQuote.value;
         editFooter.innerText = editAuthor.value;
         editQuoteForm.reset();
+
+        if(editShown === false){
+            editDiv.style.width = "300px";
+            editShown = true;
+        }
+        else{
+            editDiv.style.width = "0px";
+            editShown = false;
+        }
     })
 }
 
@@ -112,7 +159,13 @@ function loadQuotes(){
     fetch('http://localhost:3000/quotes')
     .then(resp => resp.json())
     .then(data => {
-        data.forEach(quote => {
+        if(sort){
+            newData = alphabetizeData(data);
+        }
+        else{
+            newData = data;
+        }     
+        newData.forEach(quote => {
             createElement(quote);
         }) 
     })
@@ -138,7 +191,10 @@ function createElement(quote){
     like.addEventListener('click',function(){
         //currentQuoteId = quote.id
         currentElement = span
-        fetchBeforeAdd(quote.id);     
+        //fetchBeforeAdd(quote.id); 
+        //avoids get request
+        quote.likes = parseInt(quote.likes) + 1
+        addLike(quote);    
     })
     
     like.appendChild(span)
@@ -159,8 +215,17 @@ function createElement(quote){
         editP = p;
         editFooter = footer;
         //editQuote(quote);
+        if(editShown === false){
+            editDiv.style.width = "300px";
+            editShown = true;
+        }
+        else{
+            editDiv.style.width = "0px";
+            editShown = false;
+        }
         editQuote.value = quote.quote;
         editAuthor.value = quote.author;
+        
     })
 
     blockquote.appendChild(p);
