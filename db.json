@@ -1,12 +1,6 @@
 {
   "quotes": [
     {
-      "id": 3,
-      "quote": "Don't count the days, make the days count.",
-      "likes": 14,
-      "author": "Mike Tyson"
-    },
-    {
       "id": 4,
       "quote": "You gain strength, courage and confidence by every experience in which you really stop to look fear in the face. You are able to say to yourself, 'I have lived through this horror. I can take the next thing that comes along.' You must do the thing you think you cannot do.",
       "likes": 7,
@@ -51,13 +45,13 @@
     {
       "quote": "I FUCKING LOVE BAGELS GUYS.",
       "author": "DR. PETE",
-      "likes": 25,
+      "likes": 26,
       "id": 11
     },
     {
-      "quote": "I love cats.",
+      "quote": "I loooove cats.",
       "author": "Mallory",
-      "likes": 5,
+      "likes": 6,
       "id": 12
     }
   ]
